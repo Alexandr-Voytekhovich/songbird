@@ -1,0 +1,34 @@
+.question-field {
+  width: 100%;
+  display: flex;
+  margin: 0 0 2rem;
+
+  img {
+    width: 20%;
+  }
+
+  .question-field__info-block {
+    width: 75%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: auto;
+
+    h3 {
+      width: 100%;
+      font-size: 2rem;
+      margin: 0 0 2rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid black;
+    }
+  }
+}
+
+.rhap_container  {
+  background-color: transparent !important;
+  border-radius: 1rem;
+
+  .rhap_volume-bar {
+    background-color: #009688b5 !important;
+  }
+}

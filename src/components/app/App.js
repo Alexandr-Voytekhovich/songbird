@@ -1,10 +1,28 @@
-import React from 'react';
-import ReactDom from 'react-dom'
+import React, { Component } from 'react';
+
+import Header from '../header';
+import QuestionField from '../question-field';
+import AnswerField from '../answer-field';
+import InfoField from '../info-field';
+import Footer from '../footer';
 
 import './common.scss'
 import './constants.scss'
 import './media.scss'
 
-const el = <h1>Songbird</h1>
+export default class App extends Component {
 
-ReactDom.render(el, document.getElementById('root'))
+  render() {
+    return (
+      <div className="songbird__main-container">
+      <Header />
+      <QuestionField />
+      <div className="songbird__fields-container">
+        <AnswerField />
+        <InfoField />
+      </div>
+      <Footer />
+      </div>
+    )
+  }
+}
