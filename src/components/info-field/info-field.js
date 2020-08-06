@@ -1,26 +1,54 @@
-import React from 'react';
+import React, { Component } from 'react';
 import AudioPlayer from 'react-h5-audio-player';
+import { connect } from 'react-redux';
+import birdsData from '../../data/data';
 
 import './info-field.scss';
 import 'react-h5-audio-player/src/styles.scss';
 
-const InfoField = () => {
-  return (
-    <div className="info-field">
-      <div className="info-field__description-field">
-        <img src="./assets/img/example.png" alt="example"></img>
-        <div className="description-field__info-block">
-          <h3>Павук обыкновенный</h3>
-          <p>Description of spider</p>
-          <AudioPlayer
-            src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
-            onPlay={e => console.log("onPlay")}
-          />
+class InfoField extends Component {
+
+  render () {
+    const { currentRound, currentItem } = this.props;
+
+    if (currentItem === 13) {
+      return 'Послушайте плеер. Выберите паука из списка'
+    } else {
+      return (
+        <div className="info-field">
+          <div className="info-field__description-field">
+            <img src={birdsData[currentRound][currentItem - 1].image} alt="example"></img>
+            <div className="description-field__info-block">
+              <h3>{ birdsData[currentRound][currentItem - 1].name }</h3>
+              <p onClick={this.props.currentRound131}>{ birdsData[currentRound][currentItem - 1].species }</p>
+              <AudioPlayer
+                autoPlay={false}
+                autoPlayAfterSrcChange={false}
+                src={ birdsData[currentRound][currentItem - 1].audio }
+              />
+            </div>
+          </div>
+          <p>{ birdsData[currentRound][currentItem - 1].description }</p>
         </div>
-      </div>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores quo ad omnis, itaque totam perferendis. Quasi esse laborum necessitatibus commodi, sed est exercitationem autem odit deserunt quam quidem totam quis amet. Laboriosam, possimus labore. Ullam velit veritatis fugiat vitae alias, animi adipisci, iusto tempore non dignissimos recusandae voluptates distinctio labore doloribus doloremque mollitia id deleniti repudiandae aut libero nihil aliquam! Dolorum, eveniet illo. Impedit praesentium corrupti inventore vitae temporibus numquam qui id libero voluptates? Praesentium nisi suscipit quasi distinctio! Nostrum ducimus atque amet eius ad labore minima est quibusdam et impedit itaque a quia voluptatum culpa ab quaerat, nemo laborum.</p>
-    </div>
-  )
+      )
+    }
+
+  }
 }
 
-export default InfoField;
+const mapStateToProps = ({ currentItem, currentRound }) => {
+  return { currentItem, currentRound }
+}
+
+const mapDispathToProps = ( dispatch ) => {
+  return { 
+    currentRound131: () => {
+      console.log('work')
+      dispatch({
+        type: 'UP_LEVEL'
+      })
+    }
+   }
+}
+
+export default connect(mapStateToProps, mapDispathToProps)(InfoField);

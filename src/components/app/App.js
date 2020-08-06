@@ -15,13 +15,13 @@ export default class App extends Component {
   render() {
     return (
       <div className="songbird__main-container">
-      <Header />
-      <QuestionField />
-      <div className="songbird__fields-container">
-        <AnswerField />
-        <InfoField />
-      </div>
-      <Footer />
+        <Header />
+        <QuestionField />
+        <div className="songbird__fields-container">
+          <AnswerField />
+          <InfoField />
+        </div>
+        <Footer />
       </div>
     )
   }

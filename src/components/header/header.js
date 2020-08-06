@@ -22,7 +22,7 @@ const Header = () => {
 
       <Paper square className="header__question-number">
         <Tabs
-          value={value}
+          value={0}
           variant="fullWidth"
           orientation="horizontal"
           indicatorColor="primary"
