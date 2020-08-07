@@ -11,8 +11,10 @@ class InfoField extends Component {
   render () {
     const { currentRound, currentItem } = this.props;
 
-    if (currentItem === 13) {
-      return 'Послушайте плеер. Выберите паука из списка'
+    if (currentItem === 42) {
+      return (
+        <h2 className="info-field__title">Послушайте плеер, выберите исполнителя и песню из списка.</h2>
+      )
     } else {
       return (
         <div className="info-field">

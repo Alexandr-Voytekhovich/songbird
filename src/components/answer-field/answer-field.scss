@@ -1,3 +1,17 @@
 .answer-field {
   width: 30%;
 }
+
+.list__indicator {
+  width: 10px;
+  height: 10px;
+  margin-right: 1rem;
+  border: 1px solid #009688;
+  border-radius: 50%;
+  background-color: #868686;
+}
+
+.MuiList-padding {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}

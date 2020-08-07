@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { connect } from "react-redux";
 
 import './header.scss'
 
@@ -6,40 +7,44 @@ import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
-const Header = () => {
-  const [value, setValue] = React.useState(2);
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHistory } from '@fortawesome/free-solid-svg-icons'
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+
+
+
+const Header = ({ currentRound, score }) => {
 
   return (
     <header>
       <div className="header__score-block">
-        <h1>SongOFtime</h1>
-        <span>Score: {Math.floor(Math.random()*10)}</span>
+        <h1>S<FontAwesomeIcon icon={faHistory} />NG TIME</h1>
+        <span>Score: { score }</span>
       </div>
 
       <Paper square className="header__question-number">
         <Tabs
-          value={0}
+          value={currentRound}
           variant="fullWidth"
           orientation="horizontal"
           indicatorColor="primary"
           textColor="primary"
-          onChange={handleChange}
           aria-label="disabled tabs example"
         >
           <Tab label="Павук_1" />
-          <Tab label="Павук_2" disabled />
-          <Tab label="Павук_3" disabled />
-          <Tab label="Павук_4" disabled />
-          <Tab label="Павук_5" disabled />
-          <Tab label="Павук_6" disabled />
+          <Tab label="Павук_2" />
+          <Tab label="Павук_3" />
+          <Tab label="Павук_4" />
+          <Tab label="Павук_5" />
+          <Tab label="Павук_6" />
         </Tabs>
       </Paper>
     </header>
   )
 };
 
-export default Header;
+const mapStateToProps = ({ currentRound, score }) => {
+  return { currentRound, score }
+}
+
+export default connect(mapStateToProps)(Header);

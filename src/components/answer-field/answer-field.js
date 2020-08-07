@@ -12,12 +12,43 @@ import { playCorrectAnswerAudio, playWrongAnswerAudio } from '../../utilities/ut
 
 class AnswerField extends Component {
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.currentRound !== this.props.currentRound) {
+      this.resetAnswerIndicators()
+    }
+  }
+
+  // rhap_play-pause-button
+
+  switchAnswerIndicator = (event, answerStatus) => {
+    const currentElementNumber = event.target.dataset.answer;
+    const el = document.querySelector(`.indicator-${currentElementNumber}`);
+    if (answerStatus) {
+      el.style.backgroundColor = '#4caf50';
+    } else {
+      el.style.backgroundColor = '#ff5722';
+    };
+  }
+
+  resetAnswerIndicators = () => {
+    document.querySelectorAll('.list__indicator').forEach((el) => {
+      el.style.backgroundColor = '#868686c9';
+    })
+  }
+
   compareAnswers = (event) => {
-    const { correctValue } = this.props;
+    const { correctValue, answerStatus } = this.props;
+    if (answerStatus) return;
+
+
     if (+event.target.dataset.answer === correctValue) {
+      this.switchAnswerIndicator(event, true)
+      this.props.updateScore();
       playCorrectAnswerAudio();
       this.props.changeAnswerStatus();
     } else {
+      this.switchAnswerIndicator(event, false)
+      this.props.reduceAttempts();
       playWrongAnswerAudio();
     }
   }
@@ -35,10 +66,11 @@ class AnswerField extends Component {
       const {id, name } = el;
       return (
         <ListItem button divider key={id} data-answer={id}>
+          <div className={'list__indicator indicator-' + id} data-answer={id}></div>
           <ListItemText 
             primary={name} 
             data-answer={id}  
-            primaryTypographyProps={{'data-answer': `${id}`}} />
+            primaryTypographyProps={{"data-answer": `${id}`}} />
         </ListItem>
       )
     })
@@ -52,8 +84,8 @@ class AnswerField extends Component {
 
 }
 
-const mapStateToProps = ({ currentRound, correctValue }) => {
-  return { currentRound, correctValue }
+const mapStateToProps = ({ currentRound, correctValue, answerStatus }) => {
+  return { currentRound, correctValue, answerStatus }
 }
 
 const mapDispathToProps = ( dispatch ) => {
@@ -73,6 +105,16 @@ const mapDispathToProps = ( dispatch ) => {
     changeAnswerStatus: () => {
       dispatch({
         type: 'CHANGE_ANSWER_STATUS',
+      })
+    },
+    reduceAttempts: () => {
+      dispatch({
+        type: 'REDUCE_ATTEMPTS',
+      })
+    },
+    updateScore: () => {
+      dispatch({
+        type: 'UPDATE_SCORE',
       })
     }
    }
