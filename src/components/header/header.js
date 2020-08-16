@@ -25,18 +25,19 @@ const Header = ({ currentRound, score }) => {
       <Paper square className="header__question-number">
         <Tabs
           value={currentRound}
-          variant="fullWidth"
           orientation="horizontal"
           indicatorColor="primary"
           textColor="primary"
-          aria-label="disabled tabs example"
+          variant="scrollable"
+          aria-label="scrollable auto tabs example"
+          scrollButtons="on"
         >
-          <Tab label="Павук_1" />
-          <Tab label="Павук_2" />
-          <Tab label="Павук_3" />
-          <Tab label="Павук_4" />
-          <Tab label="Павук_5" />
-          <Tab label="Павук_6" />
+          <Tab label="60-e" />
+          <Tab label="70-e" />
+          <Tab label="80-e" />
+          <Tab label="90-e" />
+          <Tab label="00-e" />
+          <Tab label="10-e" />
         </Tabs>
       </Paper>
     </header>

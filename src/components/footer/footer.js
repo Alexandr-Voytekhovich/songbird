@@ -9,6 +9,7 @@ class Footer extends Component {
 
 
   callOnClick = () => { 
+    if (!this.props.answerStatus) return;
     this.props.upRound();
     this.props.resetCurrentItem();
     this.props.resetAnswerNumber();
@@ -17,9 +18,10 @@ class Footer extends Component {
   }
 
   render() {
+    const { answerStatus } = this.props;
     return (
       <footer>
-        <Button variant="contained" onClick={this.callOnClick}>Next level</Button>
+        <Button className={answerStatus ? "activeStatus": null } variant="contained" onClick={this.callOnClick}>Next level</Button>
         <audio className="audio__correct" src="./assets/audio/pew.mp3"></audio>
         <audio className="audio__wrong" src="assets/audio/wrong.mp3"></audio>
       </footer>
@@ -27,8 +29,8 @@ class Footer extends Component {
   }
 }
 
-const mapStateToProps = ({ currentRound }) => {
-  return { currentRound }
+const mapStateToProps = ({ currentRound, answerStatus }) => {
+  return { currentRound, answerStatus }
 }
 
 const mapDispathToProps = ( dispatch ) => {

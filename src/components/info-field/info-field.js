@@ -7,6 +7,19 @@ import './info-field.scss';
 import 'react-h5-audio-player/src/styles.scss';
 
 class InfoField extends Component {
+  constructor() {
+    super();
+    this.link = 'https://raw.githubusercontent.com/Alexandr-Voytekhovich/songtime-data/master/'
+  }
+
+  componentDidUpdate(prevProps) {
+    const { currentRound, currentItem, answerStatus } = this.props;
+    if (prevProps.answerStatus !== answerStatus && currentItem !== 42) {
+      console.log(currentRound)
+      console.log(currentItem - 1)
+      document.querySelector("#root > div > div.songbird__fields-container > div > div > div > div > audio").src = this.link + birdsData[currentRound][currentItem - 1].audio
+    }
+  }
 
   render () {
     const { currentRound, currentItem } = this.props;
@@ -19,14 +32,14 @@ class InfoField extends Component {
       return (
         <div className="info-field">
           <div className="info-field__description-field">
-            <img src={birdsData[currentRound][currentItem - 1].image} alt="example"></img>
+            <img src={this.link + birdsData[currentRound][currentItem - 1].image} alt="example"></img>
             <div className="description-field__info-block">
               <h3>{ birdsData[currentRound][currentItem - 1].name }</h3>
               <p onClick={this.props.currentRound131}>{ birdsData[currentRound][currentItem - 1].species }</p>
               <AudioPlayer
                 autoPlay={false}
                 autoPlayAfterSrcChange={false}
-                src={ birdsData[currentRound][currentItem - 1].audio }
+                src={this.link + birdsData[currentRound][currentItem - 1].audio}
               />
             </div>
           </div>
@@ -38,8 +51,8 @@ class InfoField extends Component {
   }
 }
 
-const mapStateToProps = ({ currentItem, currentRound }) => {
-  return { currentItem, currentRound }
+const mapStateToProps = ({ currentItem, currentRound, answerStatus }) => {
+  return { currentItem, currentRound, answerStatus }
 }
 
 const mapDispathToProps = ( dispatch ) => {

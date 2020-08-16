@@ -12,13 +12,26 @@ import { playCorrectAnswerAudio, playWrongAnswerAudio } from '../../utilities/ut
 
 class AnswerField extends Component {
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.currentRound !== this.props.currentRound) {
-      this.resetAnswerIndicators()
-    }
+  promptCorrectAnswer = () => {
+    const {currentRound, correctValue} = this.props;
+    const artist = birdsData[currentRound][correctValue - 1].name;
+    const song = birdsData[currentRound][correctValue - 1].species;
+    console.log(`${artist} "${song}"`)
   }
 
-  // rhap_play-pause-button
+
+  componentDidMount() {
+    this.promptCorrectAnswer();
+  }
+
+  componentDidUpdate(prevProps) {
+    const {currentRound} = this.props;
+
+    if (prevProps.currentRound !== currentRound) {
+      this.resetAnswerIndicators();
+      this.promptCorrectAnswer();
+    }
+  }
 
   switchAnswerIndicator = (event, answerStatus) => {
     const currentElementNumber = event.target.dataset.answer;
@@ -39,7 +52,6 @@ class AnswerField extends Component {
   compareAnswers = (event) => {
     const { correctValue, answerStatus } = this.props;
     if (answerStatus) return;
-
 
     if (+event.target.dataset.answer === correctValue) {
       this.switchAnswerIndicator(event, true)
@@ -63,12 +75,14 @@ class AnswerField extends Component {
     const { currentRound } = this.props;
 
     const elements = birdsData[currentRound].map((el) => {
-      const {id, name } = el;
+      const {id, name, species } = el;
       return (
         <ListItem button divider key={id} data-answer={id}>
           <div className={'list__indicator indicator-' + id} data-answer={id}></div>
           <ListItemText 
-            primary={name} 
+            primary={name}
+            secondary={species}
+            secondaryTypographyProps={{"data-answer": `${id}`}}
             data-answer={id}  
             primaryTypographyProps={{"data-answer": `${id}`}} />
         </ListItem>
