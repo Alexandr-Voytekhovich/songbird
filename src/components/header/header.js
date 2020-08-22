@@ -10,9 +10,6 @@ import Tab from '@material-ui/core/Tab';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHistory } from '@fortawesome/free-solid-svg-icons'
 
-
-
-
 const Header = ({ currentRound, score }) => {
 
   return (

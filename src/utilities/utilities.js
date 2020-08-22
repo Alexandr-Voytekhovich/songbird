@@ -1,6 +1,5 @@
 function setAnswerNumber (min, max) {
   const randomValue = Math.floor(Math.random() * (max - min) + min);
-  console.log(randomValue)
   return randomValue;
 }
 

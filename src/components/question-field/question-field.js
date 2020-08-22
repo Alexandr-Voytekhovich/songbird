@@ -13,6 +13,11 @@ class QuestionField extends Component {
   constructor() {
     super();
     this.link = 'https://raw.githubusercontent.com/Alexandr-Voytekhovich/songtime-data/master/'
+    this.myRef = React.createRef();
+  }
+
+  componentDidMount() {
+    this.myRef.current.style.color = 'green'
   }
 
   componentDidUpdate(prevProps) {
@@ -29,7 +34,7 @@ class QuestionField extends Component {
       <div className="question-field">
         <img src={ answerStatus ? this.link + birdsData[currentRound][correctValue - 1].image : 'assets/img/example.gif' } alt="example"></img> 
         <div className="question-field__info-block">
-          <h3>{answerStatus ? birdsData[currentRound][correctValue - 1].name : '*******'}</h3>
+          <h3 ref={this.myRef}>{answerStatus ? birdsData[currentRound][correctValue - 1].name : '*******'}</h3>
           <AudioPlayer
             autoPlay={false}
             autoPlayAfterSrcChange={false}

@@ -7,6 +7,7 @@ const initialState = {
   correctValue: setAnswerNumber (1, 7),
   currentItem: 42,
   answerStatus: false,
+  displayModal: false,
 }
 
 const reducer = (state = initialState, action) => {
@@ -16,6 +17,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         currentRound: state.currentRound + 1
+      }
+    case 'RESET_LEVEL':
+      return {
+        ...state,
+        currentRound: 0
       }
     case 'CHANGE_CURRENT_ITEM':
       return {
@@ -56,6 +62,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         score: state.score + state.attempts,
+      }
+    case 'RESET_SCORE':
+      return {
+        ...state,
+        score: 0,
+      }
+    case 'UPDATE_DISPLAY_MODAL':
+      return {
+        ...state,
+        displayModal: !state.displayModal,
       }
       default: 
         return state;

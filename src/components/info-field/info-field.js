@@ -15,8 +15,6 @@ class InfoField extends Component {
   componentDidUpdate(prevProps) {
     const { currentRound, currentItem, answerStatus } = this.props;
     if (prevProps.answerStatus !== answerStatus && currentItem !== 42) {
-      console.log(currentRound)
-      console.log(currentItem - 1)
       document.querySelector("#root > div > div.songbird__fields-container > div > div > div > div > audio").src = this.link + birdsData[currentRound][currentItem - 1].audio
     }
   }
