@@ -4,9 +4,15 @@ header {
     justify-content: space-between;
     align-items: center;
     margin: 1rem 0;
+    font-family: 'Abril Fatface', 'Times New Roman', Times, serif;
+
+    h1 {
+      color: #423531;
+    }
 
     span {
       font-size: 1.5rem;
+      color: #423531;
     }
   }
 
@@ -14,5 +20,9 @@ header {
     display: flex;
     justify-content: center;
     margin: 0 0 2rem;
+    border-radius: 0.5rem;
+    border: 1px solid #9e9e9e91;
+    background-color: #ffffff4b;
+    box-shadow: 1px 5px 11px #00000094;
   }
 }

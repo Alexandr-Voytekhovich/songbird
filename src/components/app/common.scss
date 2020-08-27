@@ -7,7 +7,8 @@
 }
 
 body {
-  background-image: linear-gradient(to right bottom, #faffc4, #e6f9ba, #d0f4b2, #b7efac, #9ce9aa, #71d6ac, #45c3ad, #00aeac, #0086a1, #005e8d, #00366e, #090e44);  background-attachment: fixed;
+  background-image: linear-gradient(to bottom, #f3f8af, #dbf2a6, #c1eca1, #a4e69e, #85df9e, #63d4a5, #3fc8ab, #00bcb0, #00a7b3, #0090af, #0079a5, #136294);
+  background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top center;
@@ -24,8 +25,17 @@ body {
   background-position: top center;
 }
 
-.songbird__fields-container {
+.songbird__fields-container,
+.songbird__fields-container_reverse {
   width: 100%;
   display: flex;
   margin: 0 0 2rem;
+}
+
+.songbird__fields-container {
+  margin-top: 1rem;
+}
+
+.songbird__game-field_hide {
+  display: none;
 }

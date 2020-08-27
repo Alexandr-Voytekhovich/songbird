@@ -4,7 +4,9 @@
 }
 
 .info-field__title {
+  width: 60%;
   display: flex;
+  text-align:center;
   justify-content: center;
   align-items: center;
   margin: auto;
@@ -17,6 +19,7 @@
   
     img {
       width: 30%;
+      object-fit: contain;
     }
   
     .description-field__info-block {
@@ -31,14 +34,15 @@
         font-size: 1.5rem;
         margin: 0 0 1rem;
         padding: 0.5rem 0;
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid #564c4c99;
       }
 
       p {
         width: 100%;
-        margin: 0 0 1rem;
+        font-size: 1.3rem;
+        margin: 0 0 2rem;
         padding: 0.5rem 0;
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid #564c4c99;
       }
     }
   }

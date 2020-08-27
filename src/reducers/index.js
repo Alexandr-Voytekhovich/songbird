@@ -8,6 +8,7 @@ const initialState = {
   currentItem: 42,
   answerStatus: false,
   displayModal: false,
+  staticImage: true,
 }
 
 const reducer = (state = initialState, action) => {
@@ -72,6 +73,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         displayModal: !state.displayModal,
+      }
+    case 'ADD_STATIC_IMAGE':
+      return {
+        ...state,
+        staticImage: true,
+      }
+    case 'ADD_DYNAMIC_IMAGE':
+      return {
+        ...state,
+        staticImage: false,
       }
       default: 
         return state;

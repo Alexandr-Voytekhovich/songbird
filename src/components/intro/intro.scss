@@ -16,49 +16,43 @@
   background-position: top center;
   transition: all 0.8s;
   z-index: 4;
+  font-family: Arial, Helvetica, sans-serif;
+  display: none;
   
   h2 {
-    font-size: 3rem;
+    font-size: 4rem;
     margin: 40px auto 40px;
     color: #ffffff;
     opacity: 0.9;
-    letter-spacing: 13px;
+    letter-spacing: 18px;
     font-weight: 300;
     text-align: center;
     font-weight: bold;
-
+    -webkit-text-stroke: 2px #4b4747;
   }
   
     p {
-      max-width: 600px;
+      max-width: 80%;
       text-align: center;
       margin-bottom: 40px;
-      font-size: 18px;
       line-height: 1.4;
       color: #ffffff;
       opacity: 0.9;
-      font-size: 1.2rem;
+      font-size: 2.5rem;
       font-weight: bold;
-    }
-  
-    input {
-      margin: 0 20px;
-      background: transparent;
-      border: none;
-      text-align: center;
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: #fff;
+      -webkit-text-stroke: 1px #4b4747;
     }
   
     button {
       display: flex;
       justify-content: center;
       align-items: center;
-      box-shadow: 6px 6px 10px black;
+      box-shadow: 6px 6px 10px #ffffff59;
       min-width: 190px;
       padding: 10px 20px;
       font-size: 1.5rem;
+      letter-spacing: 8px;
+      text-transform: uppercase;
       color: #fff;
       opacity: 0.8;
       background-color: #0e0f0e8f;

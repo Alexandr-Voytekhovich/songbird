@@ -34,12 +34,15 @@ class AnswerField extends Component {
   }
 
   switchAnswerIndicator = (event, answerStatus) => {
+    if(!event.target.dataset.answer) return;
+
     const currentElementNumber = event.target.dataset.answer;
     const el = document.querySelector(`.indicator-${currentElementNumber}`);
+
     if (answerStatus) {
       el.style.backgroundColor = '#4caf50';
     } else {
-      el.style.backgroundColor = '#ff5722';
+      el.style.backgroundColor = '#ff5722d6';
     };
   }
 
@@ -102,7 +105,7 @@ const mapStateToProps = ({ currentRound, correctValue, answerStatus }) => {
   return { currentRound, correctValue, answerStatus }
 }
 
-const mapDispathToProps = ( dispatch ) => {
+const mapDispatchToProps = ( dispatch ) => {
   return { 
     upRound: () => {
       dispatch({
@@ -110,6 +113,7 @@ const mapDispathToProps = ( dispatch ) => {
       })
     },
     rewriteCurrentPosition: (event) => {
+      if (!event.target.dataset.answer) return
       const positionFromClick = +event.target.dataset.answer;
       dispatch({
         type: 'CHANGE_CURRENT_ITEM',
@@ -134,4 +138,4 @@ const mapDispathToProps = ( dispatch ) => {
    }
 }
 
-export default connect(mapStateToProps, mapDispathToProps)(AnswerField);
+export default connect(mapStateToProps, mapDispatchToProps)(AnswerField);

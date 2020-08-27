@@ -32,7 +32,7 @@ const hideIntro = () => {
   return (
     <div className="intro" ref={introBlock}>
       <h2>S<FontAwesomeIcon icon={faHistory} /> NG TIME</h2>
-      <p>Guess music from different times</p>
+      <p>Quiz with legendary music</p>
       <button type="button" className="btn" data-button="start" onClick={hideIntro}>Start</button>
   </div>
   )
