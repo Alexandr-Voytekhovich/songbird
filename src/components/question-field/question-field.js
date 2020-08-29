@@ -2,32 +2,22 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AudioPlayer from 'react-h5-audio-player';
 
-
-import 'react-h5-audio-player/lib/styles.css';
-import 'react-h5-audio-player/src/styles.scss'
 import 'react-h5-audio-player/src/styles.scss';
-import './question-field.scss';
 
-import birdsData from '../../data/data'
-
+import songsData from '../../data/data'
 
 class QuestionField extends Component {
 
   constructor() {
     super();
     this.link = 'https://raw.githubusercontent.com/Alexandr-Voytekhovich/songtime-data/master/'
-    this.myRef = React.createRef();
     this.player = React.createRef()
-  }
-
-  componentDidMount() {
-    this.myRef.current.style.color = 'green'
   }
 
   componentDidUpdate(prevProps) {
     const { currentRound, correctValue, answerStatus } = this.props;
     if (prevProps.answerStatus !== answerStatus) {
-      this.player.current.audio.current.src = this.link + birdsData[currentRound][correctValue - 1].audio
+      this.player.current.audio.current.src = this.link + songsData[currentRound][correctValue - 1].audio
     }
   }
 
@@ -37,17 +27,24 @@ class QuestionField extends Component {
   }
 
   render() {
-    const { currentRound, correctValue, answerStatus, addStaticImage, addDynamicImage } = this.props
+    const { currentRound, correctValue, answerStatus, addStaticImage, addDynamicImage, endGameStatus } = this.props
     
     return (
       <div className="question-field">
+
         <div className="question-field__img-block">
-        <img src={ answerStatus ? this.link + birdsData[currentRound][correctValue - 1].image : this.addImageFromStatus() } alt="example"></img>
+        <img src={ answerStatus 
+          ? this.link + songsData[currentRound][correctValue - 1].image 
+          : this.addImageFromStatus() } alt="example">
+        </img>
         </div>
+
         <div className="question-field__info-block">
-          <h3 ref={this.myRef}>{answerStatus 
-            ? `${ birdsData[currentRound][correctValue - 1].name } - ${birdsData[currentRound][correctValue - 1].species }` 
-            : '*******'}</h3>
+          <h3 >
+            {answerStatus 
+              ? `${ songsData[currentRound][correctValue - 1].name } - ${songsData[currentRound][correctValue - 1].species }` 
+              : '*******' }
+          </h3>
           <AudioPlayer
             ref={this.player}
             onPlay={ addDynamicImage }
@@ -55,16 +52,16 @@ class QuestionField extends Component {
             onAbort={ addStaticImage }
             autoPlay={false}
             autoPlayAfterSrcChange={false}
-            src={this.link + birdsData[currentRound][correctValue - 1].audio}
-          />
+            src={ endGameStatus ? "" : this.link + songsData[currentRound][correctValue - 1].audio } />
         </div>
+
       </div>
     )
   }
 }
 
-const mapStateToProps = ({ currentRound, correctValue, answerStatus, staticImage }) => {
-  return { currentRound, correctValue, answerStatus, staticImage }
+const mapStateToProps = ({ currentRound, correctValue, answerStatus, staticImage, endGameStatus }) => {
+  return { currentRound, correctValue, answerStatus, staticImage, endGameStatus }
 }
 
 const mapDispatchToProps = ( dispatch ) => {

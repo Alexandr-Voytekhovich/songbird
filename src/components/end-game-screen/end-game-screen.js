@@ -2,20 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 
-import './modal-windows.scss'
+const EndGameBlock = ({
+  resetLevel, resetAnswerStatus, resetAttempts, resetScore, hideEndBlock, resetCurrentItem, score
+}) => {
 
-const LoseModal = ({
-  resetLevel, resetAnswerStatus, resetAttempts, resetScore, updateDisplayModal, resetCurrentItem,
-  currentRound, score
-  }) => {
-    
   const resetGame = () => {
     resetLevel();
     resetAnswerStatus();
     resetAttempts();
     resetScore();
     resetCurrentItem();
-    updateDisplayModal();
+    hideEndBlock();
   }
 
   const updatePage = () => {
@@ -24,21 +21,21 @@ const LoseModal = ({
 
   if (score === 30) {
     return (
-        <div className="modal__window">
-          <h2 className="modal__text">You got the best score: { score }</h2>
-          <h3 className="modal__text">Congratulation!</h3>
+        <div className="end-game-block">
+          <h2 className="end-game-block__text">You got the best score: { score }</h2>
+          <h3 className="end-game-block__text">Congratulation!</h3>
           <img src="assets/img/congrats.jpg" alt="end"></img>
-          <Button className="modal__button" variant="contained" onClick={ updatePage }>I am the best!</Button>
+          <Button className="end-game-block__button" variant="contained" onClick={ updatePage }>I am the best!</Button>
         </div>
     )
   }
 
   return (
-      <div className="modal__window">
+      <div className="end-game-block">
         <h2>Your score: { score }</h2>
         <h3>You didn't get the best result</h3>
         <img src="assets/img/wrong.jpg" alt="end"></img>
-        <Button className="modal__button" variant="contained" onClick={resetGame}>Try again</Button>
+        <Button className="end-game-block__button" variant="contained" onClick={resetGame}>Try again</Button>
       </div>
   )
 
@@ -70,7 +67,7 @@ const mapDispatchToProps = ( dispatch ) => {
         type: 'RESET_SCORE'
       })
     },
-    updateDisplayModal: () => {
+    hideEndBlock: () => {
       dispatch({
         type: 'UPDATE_DISPLAY_MODAL'
       })
@@ -83,4 +80,4 @@ const mapDispatchToProps = ( dispatch ) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoseModal);
+export default connect(mapStateToProps, mapDispatchToProps)(EndGameBlock);

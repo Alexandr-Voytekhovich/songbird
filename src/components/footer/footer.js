@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
-import './footer.scss'
-
 import Button from '@material-ui/core/Button';
 
 const theme = createMuiTheme({
@@ -16,6 +14,12 @@ const theme = createMuiTheme({
 
 class Footer extends Component {
 
+  constructor() {
+    super();
+    this.winAudioElement = React.createRef();
+    this.loseAudioElement = React.createRef();
+  }
+
   moveToUpPage = () => {
     window.scrollTo({
       top: 0,
@@ -25,16 +29,16 @@ class Footer extends Component {
 
   playCongratsMusic = () => {
     if (this.props.score === 30) {
-      document.querySelector('.audio__win').play()
+      this.winAudioElement.current.play()
       return;
     }
-    document.querySelector('.audio__lose').play();
+    this.loseAudioElement.current.play();
   }
 
   callOnClick = () => { 
     if (!this.props.answerStatus) return;
     if (this.props.currentRound === 5) {
-      this.props.showModalWindow();
+      this.props.showEndBlock();
       this.playCongratsMusic();
       return
     };
@@ -51,11 +55,15 @@ class Footer extends Component {
     return (
       <ThemeProvider theme={theme}>
         <footer>
-          <Button color="secondary" className={answerStatus ? "activeStatus": null } variant="contained" onClick={this.callOnClick}>Next level</Button>
-          <audio className="audio__correct" src="./assets/audio/pew.mp3"></audio>
-          <audio className="audio__wrong" src="assets/audio/wrong.mp3"></audio>
-          <audio className="audio__lose" src={ currentRound === 5 ? "assets/audio/end-lose.mp3" : "" }></audio>
-          <audio className="audio__win" src={ currentRound === 5 ? "assets/audio/end-win.mp3" : "" }></audio>
+          <Button 
+            color="secondary"
+            variant="contained"
+            className={answerStatus ? "activeStatus": null }
+            onClick={this.callOnClick}>
+            Next level
+          </Button>
+          <audio ref={this.loseAudioElement} className="audio__lose" src={ currentRound === 5 ? "assets/audio/end-lose.mp3" : "" }></audio>
+          <audio ref={this.winAudioElement} className="audio__win" src={ currentRound === 5 ? "assets/audio/end-win.mp3" : "" }></audio>
         </footer>
       </ThemeProvider>
     )
@@ -93,7 +101,7 @@ const mapDispatchToProps = ( dispatch ) => {
         type: 'RESET_CORRECT_ANSWER_NUMBER'
       })
     },
-    showModalWindow: () => {
+    showEndBlock: () => {
       dispatch({
         type: 'UPDATE_DISPLAY_MODAL'
       })

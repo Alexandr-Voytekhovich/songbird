@@ -7,22 +7,20 @@
 }
 
 body {
-  background-image: linear-gradient(to bottom, #f3f8af, #dbf2a6, #c1eca1, #a4e69e, #85df9e, #63d4a5, #3fc8ab, #00bcb0, #00a7b3, #0090af, #0079a5, #136294);
-  background-attachment: fixed;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: top center;
+  @include center-background;
+  background-image: linear-gradient(to top, #e0ff98, #cbfeaa, #bbfcbb, #b0f8ca, #acf3d6, #a7eed8, #a3e8da, #a1e2da, #96dcd6, #8bd5d2, #7fcfce, #74c8ca);
+}
+
+#root {
+  margin: auto;
 }
 
 .songbird__main-container {
+  @include center-background;
   max-width: 1280px;
   height: 100%;
   margin: auto;
   padding: 2% 2%;
-  background-attachment: fixed;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: top center;
 }
 
 .songbird__fields-container,

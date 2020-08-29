@@ -6,8 +6,8 @@
  }
 
  .info-field__description-field img {
-   margin-bottom: 2rem;
    width: 60%;
+   margin-bottom: 2rem;
  }
 
  .songbird__fields-container {
@@ -68,10 +68,50 @@
 }
 }
 
+@media (max-width: 700px) {
+
+  header .header__score-block {
+    margin: 1.2rem 0;
+  }
+
+  .intro {
+    align-items: center;
+    justify-content: center;
+    padding: 0rem;
+    background-image: none;
+    background-color: #74c8ca;
+  }
+
+  .intro h2 {
+    font-size: 3rem;
+    margin: 0 auto 80px;
+    display: block;
+  }
+
+  .intro p {
+    font-size: 2rem;
+    display: block;
+  }
+
+  .intro button {
+    margin-left: 0;
+  }
+}
+
 @media (max-width: 450px) {
 
+  .intro h2 {
+    font-size: 2.4rem;
+    display: block;
+  }
+
+  .intro p {
+    font-size: 1.8rem;
+    display: block;
+  }
+
   header .header__score-block h1 {
-    font-size: 1.7rem;
+    font-size: 1.5rem;
   }
 
   header .header__score-block span {
@@ -86,16 +126,32 @@
   .info-field__title {
     font-size: 1.3rem;
   }
+
+  .end-game-block h2 {
+    font-size: 1.6rem;
+  }
 }
 
 
 @media (hover:hover) {
+
   .intro button:hover {
     cursor: pointer;
-    color: black;
     opacity: 0.8;
-    background-color: #ffffffad;
-    box-shadow: 1px 1px 1px white;
+    color: black;
+    background-color: #eff385;
+    border: 1px solid #16170198;
+    box-shadow: 1px 1px 1px #000000e1;
+    transition: all 0.8s;
+  }
+
+  footer button:hover {
+    opacity: 0.7;
+    transition: all 0.8s;
+  }
+
+  .end-game-block button:hover {
+    opacity: 0.7;
     transition: all 0.8s;
   }
 }

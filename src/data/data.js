@@ -1,4 +1,4 @@
-const birdsData = [
+const songsData = [
     [       
       {
         id: 1,
@@ -213,7 +213,7 @@ const birdsData = [
         id: 4,
         name: 'Metallica',
         species: 'The Unforgiven',
-        description: `The Unforgiven (с англ. — «Непрощённый») — четвёртая песня из пятого студийного альбома группы Metallica The Black Album, вышедшего в 1991 году. Она стала хитом вместе с такими песнями из этого альбома, как «Enter Sandman» и «Nothing Else Matters».`,
+        description: `«The Unforgiven» — четвёртая песня из пятого студийного альбома группы Metallica The Black Album, вышедшего в 1991 году. Она стала хитом вместе с такими песнями из этого альбома, как «Enter Sandman» и «Nothing Else Matters».`,
         image: '90-004.jpg',
         audio: '90-004.mp3'
       },
@@ -261,7 +261,7 @@ const birdsData = [
         id: 3,
         name: 'Three Days Grace',
         species: 'I Hate Everything About You',
-        description: `I Hate Everything About You — первый сингл группы Three Days Grace, дебютного альбома Three Days Grace. Песня заняла 55 позицию в чарте Billboard Hot 100, и четвертую и вторую строчки в списках Mainstream Rock Tracks и Modern Rock Tracks соответственно. Это был наилучший показатель десятилетия в чартах альтернативной музыки. И один из тридцати лучших среди самых успешных рок-композиций чартов рок-музыки в целом. Несмотря на любые выходившие после популярные композиции, песня продержалась в списке 46 недель.`,
+        description: `«I Hate Everything About You» — первый сингл группы Three Days Grace, дебютного альбома Three Days Grace. Песня заняла 55 позицию в чарте Billboard Hot 100, и четвертую и вторую строчки в списках Mainstream Rock Tracks и Modern Rock Tracks соответственно. Это был наилучший показатель десятилетия в чартах альтернативной музыки. И один из тридцати лучших среди самых успешных рок-композиций чартов рок-музыки в целом. Несмотря на любые выходившие после популярные композиции, песня продержалась в списке 46 недель.`,
         image: '200-003.jpg',
         audio: '200-003.mp3'
       },
@@ -269,7 +269,7 @@ const birdsData = [
         id: 4,
         name: 'Rise Against',
         species: 'Give It All',
-        description: `Give It All — первый сингл Rise Against с альбома Siren Song of the Counter Culture (2004). Был выпущен 12 октября 2004 года на лейбле Geffen Records. Песня «Give it All» была первой песней группы, выпущенной на этом лейбле. После релиза, песня попала в сборник Rock Against Bush, Vol. 1. Также песню можно встретить в саундтреках некоторых игр.
+        description: `«Give it All» — первый сингл Rise Against с альбома Siren Song of the Counter Culture (2004). Был выпущен 12 октября 2004 года на лейбле Geffen Records. Песня «Give it All» была первой песней группы, выпущенной на этом лейбле. После релиза, песня попала в сборник Rock Against Bush, Vol. 1. Также песню можно встретить в саундтреках некоторых игр.
         «Give It All» начали проигрывать на радиостанциях в октябре 2004, в качастве первого сингла из Siren Song Of The Counter Culture. Песня стала первой композицией Rise Against, которая вошла в чарт Billboard Modern Rock Tracks, в котором достигла 37 места.
         После релиза альбома, «Give it All» почти не была охвачена музыкальными критиками, которые просмотрели альбом, однако те, кто её отметили, называли её одной из самых лучших композиций Rise Against. Сайт WatchMojo.com поместил «Give It All» на 10 место в списке лучших хард-рок и хэви-метал песен начала 2000-х`,
         image: '200-004.jpg',
@@ -279,7 +279,7 @@ const birdsData = [
         id: 5,
         name: 'Green Day',
         species: 'Boulevard of Broken Dreams',
-        description: `Boulevard of Broken Dreams — второй сингл американской рок-группы Green Day из альбома American Idiot. Песня была написана Green Day на слова вокалиста Билли Джо Армстронга. Сама песня является одной из «визитных карточек» группы.
+        description: `«Boulevard of Broken Dreams» — второй сингл американской рок-группы Green Day из альбома American Idiot. Песня была написана Green Day на слова вокалиста Билли Джо Армстронга. Сама песня является одной из «визитных карточек» группы.
         Лирическим героем песни является главный персонаж альбома American Idiot - Иисус из пригорода (Jesus of Suburbia). Лирика песни угрюмая, мрачная, темп умеренный, средний. Песня контрастирует с предыдущим треком на альбоме, «Holiday», где Иисус развлекается в городе. В специальном выпуске MTV Making the Video «Holiday» описывается как вечеринка, а «Boulevard of Broken Dreams» как последующее похмелье.`,
         image: '200-005.jpg',
         audio: '200-005.mp3'
@@ -323,7 +323,7 @@ const birdsData = [
         id: 4,
         name: 'Coldplay',
         species: 'Hymn For The Weekend',
-        description: `"Hymn for the Weekend" - это песня британской рок-группы Coldplay с неуказанным гостевым вокалом американской певицы Бейонсе. Он был выпущен 25 января 2016 года как второй сингл с их седьмого студийного альбома A Head Full of Dreams (2015). Песня была написана участниками Coldplay и спродюсирована Риком Симпсоном, Avicii, Digital Divide и Stargate.
+        description: `«Hymn for the Weekend» - это песня британской рок-группы Coldplay с неуказанным гостевым вокалом американской певицы Бейонсе. Он был выпущен 25 января 2016 года как второй сингл с их седьмого студийного альбома A Head Full of Dreams (2015). Песня была написана участниками Coldplay и спродюсирована Риком Симпсоном, Avicii, Digital Divide и Stargate.
         "Hymn for the Weekend" занял шестое место в чарте UK Singles Chart, а также попал в двадцатку лучших в таких странах, как Швейцария, Ирландия, Франция, Швеция, Австрия, Бельгия, Италия и Испания. В США с ремиксом Seeb песня достигла 25-го места в американском Billboard Hot 100. Музыкальное видео на песню было выпущено 29 января 2016 года с участием Coldplay в различных городах Индии, а также Бейонсе, выступающей в некоторых сценах. В нем также участвовала индийская актриса из Болливуда Сонам Капур в короткой роли.`,
         image: '201-004.jpg',
         audio: '201-004.mp3'
@@ -351,4 +351,4 @@ const birdsData = [
     ]
   ];
   
-  export default birdsData;
+  export default songsData;

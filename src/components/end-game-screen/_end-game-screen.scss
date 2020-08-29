@@ -1,9 +1,9 @@
-.modal__window {
+.end-game-block {
   display: flex;
   flex-direction: column;
 
   img {
-    width: 100%;
+    width: 70%;
     margin: 0.5rem auto;
   }
 
@@ -18,9 +18,10 @@
     margin: 0.5rem auto;
   }
 
-  .modal__button {
+  .end-game-block__button {
     width: 100%;
     margin: 0.5rem auto;
     background-color: #ffffff78;
+    transition: all 0.8s;
   }
 }

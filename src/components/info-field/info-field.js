@@ -1,72 +1,67 @@
 import React, { Component } from 'react';
 import AudioPlayer from 'react-h5-audio-player';
 import { connect } from 'react-redux';
-import birdsData from '../../data/data';
+import songsData from '../../data/data';
 
-import './info-field.scss';
 import 'react-h5-audio-player/src/styles.scss';
 
 class InfoField extends Component {
   constructor() {
     super();
-    this.link = 'https://raw.githubusercontent.com/Alexandr-Voytekhovich/songtime-data/master/'
+    this.link = 'https://raw.githubusercontent.com/Alexandr-Voytekhovich/songtime-data/master/';
+    this.playerFromInfo = React.createRef();
   }
 
   componentDidUpdate(prevProps) {
     const { currentRound, currentItem, answerStatus } = this.props;
     if (prevProps.answerStatus !== answerStatus && currentItem !== 42) {
-      document.querySelector(".info-field__description-field audio").src = this.link + birdsData[currentRound][currentItem - 1].audio
+      this.playerFromInfo.current.src = this.link + songsData[currentRound][currentItem - 1].audio
     }
   }
 
   render () {
     const { 
-      currentRound, currentItem,
+      currentRound, currentItem, endGameStatus,
       addDynamicImage, addStaticImage
       } = this.props;
-
     if (currentItem === 42) {
-      return (
-        <h2 className="info-field__title">Listen to the player, select an artist and a song from the list.</h2>
-      )
+      return <h2 className="info-field__title">^^ Listen to the player, select an artist and a song from the list ^^</h2>
     } else {
       return (
         <div className="info-field">
             <div className="info-field__description-field">
-              <img src={this.link + birdsData[currentRound][currentItem - 1].image} alt="example"></img>
+
+              <img src={this.link + songsData[currentRound][currentItem - 1].image} alt="example"></img>
+
               <div className="description-field__info-block">
-                <h3>{ birdsData[currentRound][currentItem - 1].name }</h3>
-                <p onClick={this.props.currentRound131}>{ birdsData[currentRound][currentItem - 1].species }</p>
+                <span>{ songsData[currentRound][currentItem - 1].name }</span>
+                <p> {"«" + songsData[currentRound][currentItem - 1].species + "»"}</p>
                 <AudioPlayer
+                  ref={this.playerFromInfo}
                   onPlay={ addDynamicImage }
                   onPause={ addStaticImage }
                   onAbort={ addStaticImage }
                   autoPlay={false}
                   autoPlayAfterSrcChange={false}
-                  src={this.link + birdsData[currentRound][currentItem - 1].audio}
-                />
+                  src={endGameStatus ? "" : this.link + songsData[currentRound][currentItem - 1].audio} />
               </div>
+
             </div>
-            <p>{ birdsData[currentRound][currentItem - 1].description }</p>
+            <p>{ songsData[currentRound][currentItem - 1].description }</p>
         </div>
+
       )
     }
 
   }
 }
 
-const mapStateToProps = ({ currentItem, currentRound, answerStatus }) => {
-  return { currentItem, currentRound, answerStatus }
+const mapStateToProps = ({ currentItem, currentRound, answerStatus, endGameStatus }) => {
+  return { currentItem, currentRound, answerStatus, endGameStatus }
 }
 
 const mapDispatchToProps = ( dispatch ) => {
-  return { 
-    currentRound131: () => {
-      console.log('work')
-      dispatch({
-        type: 'UP_LEVEL'
-      })
-    },
+  return {
     addStaticImage: () => {
       dispatch({
         type: 'ADD_STATIC_IMAGE'

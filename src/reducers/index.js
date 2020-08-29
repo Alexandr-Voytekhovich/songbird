@@ -1,4 +1,7 @@
-import { setAnswerNumber } from '../utilities/utilities'
+function setAnswerNumber (min, max) {
+  const randomValue = Math.floor(Math.random() * (max - min) + min);
+  return randomValue;
+}
 
 const initialState = {
   currentRound: 0,
@@ -7,7 +10,7 @@ const initialState = {
   correctValue: setAnswerNumber (1, 7),
   currentItem: 42,
   answerStatus: false,
-  displayModal: false,
+  endGameStatus: false,
   staticImage: true,
 }
 
@@ -72,7 +75,7 @@ const reducer = (state = initialState, action) => {
     case 'UPDATE_DISPLAY_MODAL':
       return {
         ...state,
-        displayModal: !state.displayModal,
+        endGameStatus: !state.endGameStatus,
       }
     case 'ADD_STATIC_IMAGE':
       return {

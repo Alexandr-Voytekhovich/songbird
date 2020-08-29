@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import birdsData from '../../data/data';
-
-import './answer-field.scss';
+import songsData from '../../data/data';
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
-import { playCorrectAnswerAudio, playWrongAnswerAudio } from '../../utilities/utilities'
-
 class AnswerField extends Component {
+
+  constructor() {
+    super();
+    this.listItems = [];
+    this.correctAudioStatus = React.createRef();
+    this.wrongAudioStatus = React.createRef();
+  }
 
   promptCorrectAnswer = () => {
     const {currentRound, correctValue} = this.props;
-    const artist = birdsData[currentRound][correctValue - 1].name;
-    const song = birdsData[currentRound][correctValue - 1].species;
+    const artist = songsData[currentRound][correctValue - 1].name;
+    const song = songsData[currentRound][correctValue - 1].species;
     console.log(`${artist} "${song}"`)
   }
 
@@ -25,7 +28,7 @@ class AnswerField extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const {currentRound} = this.props;
+    const { currentRound } = this.props;
 
     if (prevProps.currentRound !== currentRound) {
       this.resetAnswerIndicators();
@@ -36,52 +39,66 @@ class AnswerField extends Component {
   switchAnswerIndicator = (event, answerStatus) => {
     if(!event.target.dataset.answer) return;
 
-    const currentElementNumber = event.target.dataset.answer;
-    const el = document.querySelector(`.indicator-${currentElementNumber}`);
+    const currentElementNumber = event.target.dataset.answer - 1;
+    const el = this.listItems[currentElementNumber];
 
     if (answerStatus) {
       el.style.backgroundColor = '#4caf50';
     } else {
       el.style.backgroundColor = '#ff5722d6';
+      el.classList.add('wrong-answer')
     };
   }
 
   resetAnswerIndicators = () => {
-    document.querySelectorAll('.list__indicator').forEach((el) => {
+    this.listItems.forEach((el) => {
       el.style.backgroundColor = '#868686c9';
+      el.classList.remove('wrong-answer');
     })
+  }
+
+  playAnswerStatus = (status) => {
+    return status 
+      ? this.correctAudioStatus.current.play() 
+      : this.wrongAudioStatus.current.play()
   }
 
   compareAnswers = (event) => {
     const { correctValue, answerStatus } = this.props;
+
+    const currentElementNumber = event.target.dataset.answer - 1;
+    const el = this.listItems[currentElementNumber];
+
     if (answerStatus) return;
 
     if (+event.target.dataset.answer === correctValue) {
       this.switchAnswerIndicator(event, true)
       this.props.updateScore();
-      playCorrectAnswerAudio();
+      this.playAnswerStatus(true);
       this.props.changeAnswerStatus();
-    } else {
-      this.switchAnswerIndicator(event, false)
-      this.props.reduceAttempts();
-      playWrongAnswerAudio();
+      return;
     }
+
+    if (el.classList.contains ('wrong-answer')) return;
+
+    this.switchAnswerIndicator(event, false)
+    this.playAnswerStatus(false);
+    this.props.reduceAttempts();
   }
 
-  callOnClick = (event) => { 
+  callOnClick = (event) => {
     this.compareAnswers(event);
     this.props.rewriteCurrentPosition(event);
   }
 
-
   render() {
     const { currentRound } = this.props;
 
-    const elements = birdsData[currentRound].map((el) => {
-      const {id, name, species } = el;
+    const elements = songsData[currentRound].map((el) => {
+    const {id, name, species } = el;
       return (
         <ListItem button divider key={id} data-answer={id}>
-          <div className={'list__indicator indicator-' + id} data-answer={id}></div>
+          <div ref={listItem => this.listItems[id - 1] = listItem} className={'list__indicator indicator-' + id} data-answer={id}></div>
           <ListItemText 
             primary={name}
             secondary={species}
@@ -93,9 +110,13 @@ class AnswerField extends Component {
     })
 
     return (
-      <List component="nav" aria-label="mailbox folders" className="answer-field" onClick={this.callOnClick}>
-        {elements}
-      </List>
+      <>
+        <List component="nav" aria-label="mailbox folders" className="answer-field" onClick={this.callOnClick}>
+          {elements}
+        </List>
+        <audio ref={this.correctAudioStatus} className="audio__correct" src="./assets/audio/pew.mp3"></audio>
+        <audio ref={this.wrongAudioStatus} className="audio__wrong" src="assets/audio/wrong.mp3"></audio>
+      </>
     )
   }
 

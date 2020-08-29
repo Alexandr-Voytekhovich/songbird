@@ -3,16 +3,7 @@ import React, { useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHistory } from '@fortawesome/free-solid-svg-icons'
 
-import '../app/constants.scss'
-import './intro.scss'
-
 const Intro = () => {
-
-/* const [visibility, setVisibility] = useState(false) */
-
-/* const hideIntro = ()  => {
-  setVisibility(!visibility)
-} */
 
 const introBlock = useRef();
 
@@ -31,7 +22,7 @@ const hideIntro = () => {
 
   return (
     <div className="intro" ref={introBlock}>
-      <h2>S<FontAwesomeIcon icon={faHistory} /> NG TIME</h2>
+      <h2>S<FontAwesomeIcon icon={faHistory} />NG TIME</h2>
       <p>Quiz with legendary music</p>
       <button type="button" className="btn" data-button="start" onClick={hideIntro}>Start</button>
   </div>
