@@ -1,0 +1,38 @@
+.question-field {
+  width: 100%;
+  display: flex;
+  min-height: 300px;
+
+  .question-field__img-block {
+    width: 40%;
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 80%;
+      display: block;
+      margin: auto;
+      max-height: 300px;
+      border-radius: 1rem;
+      object-fit: contain;
+    }
+  }
+
+  .question-field__info-block {
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: auto;
+
+    h3 {
+      display: block;
+      width: 100%;
+      text-align: center;
+      font-size: 2rem;
+      margin: 0 0 2rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid #564c4c99;
+    }
+  }
+}

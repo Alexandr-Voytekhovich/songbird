@@ -1,0 +1,18 @@
+@mixin center-background() {
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+}
+
+@mixin flexibleCenter() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flexibleSpace() {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

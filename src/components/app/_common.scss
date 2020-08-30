@@ -1,0 +1,39 @@
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  @include center-background;
+  background-image: linear-gradient(to top, #e0ff98, #cbfeaa, #bbfcbb, #b0f8ca, #acf3d6, #a7eed8, #a3e8da, #a1e2da, #96dcd6, #8bd5d2, #7fcfce, #74c8ca);
+}
+
+#root {
+  margin: auto;
+}
+
+.songbird__main-container {
+  @include center-background;
+  max-width: 1280px;
+  height: 100%;
+  margin: auto;
+  padding: 2% 2%;
+}
+
+.songbird__fields-container,
+.songbird__fields-container_reverse {
+  width: 100%;
+  display: flex;
+  margin: 0 0 2rem;
+}
+
+.songbird__fields-container {
+  margin-top: 1rem;
+}
+
+.songbird__game-field_hide {
+  display: none;
+}
