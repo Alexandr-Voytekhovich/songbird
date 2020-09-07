@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import AudioPlayer from 'react-h5-audio-player';
+import { mapStateToProps, mapDispatchToProps } from '../../reducers/connect-components';
 
+import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/src/styles.scss';
 
-import songsData from '../../data/data'
+import Spinner from '../spinner';
+
+import songsData from '../../data/data';
 
 class QuestionField extends Component {
 
@@ -26,16 +29,30 @@ class QuestionField extends Component {
     return staticImage ? "assets/img/example-static.jpg" : "assets/img/example.gif";
   }
 
+  aterLoadingImage = () => {
+    this.props.showImageInQuestionBlock();
+  }
+
   render() {
-    const { currentRound, correctValue, answerStatus, addStaticImage, addDynamicImage, endGameStatus } = this.props
+    const { currentRound, correctValue, answerStatus, addStaticImage, 
+      addDynamicImage, endGameStatus, loadingInQuestionBlock } = this.props
     
     return (
       <div className="question-field">
 
         <div className="question-field__img-block">
-        <img src={ answerStatus 
-          ? this.link + songsData[currentRound][correctValue - 1].image 
-          : this.addImageFromStatus() } alt="example">
+
+        { loadingInQuestionBlock 
+          ? <Spinner /> 
+          : null }
+
+        <img 
+          className={loadingInQuestionBlock ? "hide-loading-block" : "" } 
+          src={ answerStatus 
+            ? this.link + songsData[currentRound][correctValue - 1].image 
+            : this.addImageFromStatus() } 
+            alt="example" 
+            onLoad={ this.aterLoadingImage }>
         </img>
         </div>
 
@@ -57,25 +74,6 @@ class QuestionField extends Component {
 
       </div>
     )
-  }
-}
-
-const mapStateToProps = ({ currentRound, correctValue, answerStatus, staticImage, endGameStatus }) => {
-  return { currentRound, correctValue, answerStatus, staticImage, endGameStatus }
-}
-
-const mapDispatchToProps = ( dispatch ) => {
-  return {
-    addStaticImage: () => {
-      dispatch({
-        type: 'ADD_STATIC_IMAGE'
-      })
-    },
-    addDynamicImage: () => {
-      dispatch({
-        type: 'ADD_DYNAMIC_IMAGE'
-      })
-    }
   }
 }
 

@@ -34,6 +34,7 @@ body {
   margin-top: 1rem;
 }
 
-.songbird__game-field_hide {
-  display: none;
+.songbird__game-field_hide,
+.hide-loading-block {
+  display: none !important;
 }

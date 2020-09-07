@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
-import AudioPlayer from 'react-h5-audio-player';
 import { connect } from 'react-redux';
-import songsData from '../../data/data';
+import { mapStateToProps, mapDispatchToProps } from '../../reducers/connect-components';
 
+import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/src/styles.scss';
+
+import Spinner from '../spinner';
+import songsData from '../../data/data';
 
 class InfoField extends Component {
   constructor() {
     super();
     this.link = 'https://raw.githubusercontent.com/Alexandr-Voytekhovich/songtime-data/master/';
     this.playerFromInfo = React.createRef();
+  }
+
+  showImage = () => {
+    this.props.showImageInInfoBlock();
   }
 
   componentDidUpdate(prevProps) {
@@ -21,8 +28,8 @@ class InfoField extends Component {
 
   render () {
     const { 
-      currentRound, currentItem, endGameStatus,
-      addDynamicImage, addStaticImage
+      currentRound, currentItem, endGameStatus, loadingInInfoBlock,
+      addDynamicImage, addStaticImage, 
       } = this.props;
     if (currentItem === 42) {
       return <h2 className="info-field__title">^^ Listen to the player, select an artist and a song from the list ^^</h2>
@@ -30,8 +37,19 @@ class InfoField extends Component {
       return (
         <div className="info-field">
             <div className="info-field__description-field">
+              
+              <div className="info-field__image-block">
+              
+              { loadingInInfoBlock ? <Spinner /> : null }
 
-              <img src={this.link + songsData[currentRound][currentItem - 1].image} alt="example"></img>
+              <img 
+                className={loadingInInfoBlock ? "hide-loading-block" : "" } 
+                src={this.link + songsData[currentRound][currentItem - 1].image} 
+                alt="example"
+                onLoad={ this.showImage }></img>
+
+              </div>
+
 
               <div className="description-field__info-block">
                 <span>{ songsData[currentRound][currentItem - 1].name }</span>
@@ -54,25 +72,6 @@ class InfoField extends Component {
     }
 
   }
-}
-
-const mapStateToProps = ({ currentItem, currentRound, answerStatus, endGameStatus }) => {
-  return { currentItem, currentRound, answerStatus, endGameStatus }
-}
-
-const mapDispatchToProps = ( dispatch ) => {
-  return {
-    addStaticImage: () => {
-      dispatch({
-        type: 'ADD_STATIC_IMAGE'
-      })
-    },
-    addDynamicImage: () => {
-      dispatch({
-        type: 'ADD_DYNAMIC_IMAGE'
-      })
-    }
-   }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(InfoField);
