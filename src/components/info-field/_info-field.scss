@@ -12,22 +12,27 @@
 }
 
 .info-field__description-field {
-    width: 100%;
-    display: flex;
-    margin: 0 0 2rem;
+  width: 100%;
+  display: flex;
+  margin: 0 0 2rem;
   
+  .info-field__image-block {
+    width: 30%;
+    @include flexibleCenter;
+
     img {
-      width: 30%;
+      width: 80%;
       object-fit: contain;
     }
-  
-    .description-field__info-block {
-      width: 60%;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      margin: auto;
-  
+  }
+
+  .description-field__info-block {
+    width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: auto;
+
       span {
         width: 100%;
         text-align: center;
@@ -45,6 +50,6 @@
         padding: 0.5rem 0;
         border-bottom: 1px solid #564c4c99;
       }
-    }
   }
+}
   

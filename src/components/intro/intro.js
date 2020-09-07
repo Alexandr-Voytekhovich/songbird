@@ -25,7 +25,7 @@ const hideIntro = () => {
       <h2>S<FontAwesomeIcon icon={faHistory} />NG TIME</h2>
       <p>Quiz with legendary music</p>
       <button type="button" className="btn" data-button="start" onClick={hideIntro}>Start</button>
-  </div>
+    </div>
   )
 }
 

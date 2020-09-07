@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { mapStateToProps } from '../../reducers/connect-components';
+
 import Intro from '../intro';
 import Header from '../header';
 import QuestionField from '../question-field';
@@ -21,7 +23,6 @@ class App extends Component {
         <Intro />
         <div className="songbird__main-container">
           <Header />
-
           <div className= {gameOver ? "songbird__game-field_hide" : "songbird__game-field" }>
             <QuestionField />
 
@@ -40,8 +41,4 @@ class App extends Component {
   }
 }
 
-function mapStateToProprs({ endGameStatus, currentRound, currentItem }) {
-  return { endGameStatus, currentRound, currentItem }
-}
-
-export default connect(mapStateToProprs)(App);
+export default connect(mapStateToProps)(App);

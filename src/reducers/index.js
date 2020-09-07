@@ -12,6 +12,8 @@ const initialState = {
   answerStatus: false,
   endGameStatus: false,
   staticImage: true,
+  loadingInQuestionBlock: false,
+  loadingInInfoBlock: false,
 }
 
 const reducer = (state = initialState, action) => {
@@ -86,6 +88,26 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         staticImage: false,
+      }
+    case 'ON_LOADING_IN_QUESTION_BLOCK':
+      return {
+        ...state,
+        loadingInQuestionBlock: true,
+      }
+    case 'OFF_LOADING_IN_QUESTION_BLOCK':
+      return {
+        ...state,
+        loadingInQuestionBlock: false,
+      }
+    case 'ON_LOADING_IN_INFO_BLOCK':
+      return {
+        ...state,
+        loadingInInfoBlock: true,
+      }
+    case 'OFF_LOADING_IN_INFO_BLOCK':
+      return {
+        ...state,
+        loadingInInfoBlock: false,
       }
       default: 
         return state;

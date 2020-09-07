@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { mapStateToProps, mapDispatchToProps } from '../../reducers/connect-components';
 
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 const theme = createMuiTheme({
@@ -42,6 +43,7 @@ class Footer extends Component {
       this.playCongratsMusic();
       return
     };
+    this.props.startLoadingInQuestionBlock();
     this.props.upRound();
     this.props.resetCurrentItem();
     this.props.resetAnswerNumber();
@@ -68,45 +70,6 @@ class Footer extends Component {
       </ThemeProvider>
     )
   }
-}
-
-const mapStateToProps = ({ currentRound, answerStatus, score }) => {
-  return { currentRound, answerStatus, score }
-}
-
-const mapDispatchToProps = ( dispatch ) => {
-  return { 
-    upRound: () => {
-      dispatch({
-        type: 'UP_LEVEL'
-      })
-    },
-    resetCurrentItem: () => {
-      dispatch({
-        type: 'RESET_CURRENT_ITEM'
-      })
-    },
-    resetAttempts: () => {
-      dispatch({
-        type: 'RESET_ATTEMPTS'
-      })
-    },
-    resetAnswerStatus: () => {
-      dispatch({
-        type: 'RESET_ANSWER_STATUS'
-      })
-    },
-    resetAnswerNumber: () => {
-      dispatch({
-        type: 'RESET_CORRECT_ANSWER_NUMBER'
-      })
-    },
-    showEndBlock: () => {
-      dispatch({
-        type: 'UPDATE_DISPLAY_MODAL'
-      })
-    }
-   }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Footer);

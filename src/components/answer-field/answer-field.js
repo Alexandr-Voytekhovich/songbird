@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import songsData from '../../data/data';
 
+import { mapStateToProps, mapDispatchToProps } from '../../reducers/connect-components';
+
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -21,7 +23,6 @@ class AnswerField extends Component {
     const song = songsData[currentRound][correctValue - 1].species;
     console.log(`${artist} "${song}"`)
   }
-
 
   componentDidMount() {
     this.promptCorrectAnswer();
@@ -64,14 +65,21 @@ class AnswerField extends Component {
   }
 
   compareAnswers = (event) => {
-    const { correctValue, answerStatus } = this.props;
+    const { currentItem, correctValue, answerStatus } = this.props;
 
     const currentElementNumber = event.target.dataset.answer - 1;
     const el = this.listItems[currentElementNumber];
 
+    if (!event.target.dataset.answer) return
+
+    if(currentItem !== +event.target.dataset.answer) {
+      this.props.startLoadingInInfoBlock();
+    }
+
     if (answerStatus) return;
 
     if (+event.target.dataset.answer === correctValue) {
+      this.props.startLoadingInQuestionBlock();
       this.switchAnswerIndicator(event, true)
       this.props.updateScore();
       this.playAnswerStatus(true);
@@ -79,7 +87,7 @@ class AnswerField extends Component {
       return;
     }
 
-    if (el.classList.contains ('wrong-answer')) return;
+    if (el.classList.contains('wrong-answer')) return;
 
     this.switchAnswerIndicator(event, false)
     this.playAnswerStatus(false);
@@ -120,43 +128,6 @@ class AnswerField extends Component {
     )
   }
 
-}
-
-const mapStateToProps = ({ currentRound, correctValue, answerStatus }) => {
-  return { currentRound, correctValue, answerStatus }
-}
-
-const mapDispatchToProps = ( dispatch ) => {
-  return { 
-    upRound: () => {
-      dispatch({
-        type: 'UP_LEVEL'
-      })
-    },
-    rewriteCurrentPosition: (event) => {
-      if (!event.target.dataset.answer) return
-      const positionFromClick = +event.target.dataset.answer;
-      dispatch({
-        type: 'CHANGE_CURRENT_ITEM',
-        positionFromClick
-      })
-    },
-    changeAnswerStatus: () => {
-      dispatch({
-        type: 'CHANGE_ANSWER_STATUS',
-      })
-    },
-    reduceAttempts: () => {
-      dispatch({
-        type: 'REDUCE_ATTEMPTS',
-      })
-    },
-    updateScore: () => {
-      dispatch({
-        type: 'UPDATE_SCORE',
-      })
-    }
-   }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AnswerField);
