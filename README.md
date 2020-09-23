@@ -1,7 +1,7 @@
 # Всем заглянувшим доброго дня. 
 ### Вся информация по проделанной работе ниже:
 
-**1. Ссылка на задание:** [GitHub](https://github.com/rolling-scopes-school/tasks/blob/master/tasks/songbird.md) 
+**1. Ссылка на задание:** [GitHub](https://github.com/rolling-scopes-school/tasks/blob/master/tasks/songbird.md)  
 **2. Скриншоты:** 
 - экран приветствия - [Imgur](https://i.imgur.com/sRRNulx.jpg);
 - начало игры - [Imgur](https://i.imgur.com/JK4hJV2.jpg);
