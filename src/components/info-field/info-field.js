@@ -11,7 +11,7 @@ import songsData from '../../data/data';
 class InfoField extends Component {
   constructor() {
     super();
-    this.link = 'https://raw.githubusercontent.com/Alexandr-Voytekhovich/songtime-data/master/';
+    this.link = 'https://raw.githubusercontent.com/Alexander-Voytekhovich/songtime-data/master/';
     this.playerFromInfo = React.createRef();
   }
 
